@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 class PrintChequeController extends Controller
 {
-   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         //

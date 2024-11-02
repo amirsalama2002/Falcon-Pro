@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PropertyManaqement;
+use App\Models\PropertDetailsReport;
 use Illuminate\Http\Request;
 
-class PropertyManaqementController extends Controller
+class PropertDetailsReportController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
     public function index()
     {
         //
-        $na = PropertyManaqement::all();
-        return view('PropertyManaqement.index')
-        ->with('mo',$na);
+        $no = PropertDetailsReport::all();
+        return view(' PropertDetailsReport.index')
+        ->with('mo',$no);
     }
 
-   
+    
     public function create()
     {
-        return view('PropertyManaqement.create');
+        //
+        return view(' PropertDetailsReport.create');
     }
 
     
@@ -32,7 +32,7 @@ class PropertyManaqementController extends Controller
         //
         $vaildet = $request->validate([
             'buildingname' => 'required',
-            'property' => 'required',
+            'propeerty' => 'required',
             'type' => 'required',
             'model' => 'required',
             'category' => 'required',
@@ -44,30 +44,30 @@ class PropertyManaqementController extends Controller
             'view' => 'required',
             'feature' => 'required'
         ]);
-        PropertyManaqement::create($vaildet);
+        PropertDetailsReport::create($vaildet);
         return redirect()->route('PropertyManaqement.index');
     }
 
     
-    public function show(PropertyManaqement $propertyManaqement)
+    public function show(PropertDetailsReport $propertDetailsReport)
     {
         //
     }
 
     
-    public function edit(PropertyManaqement $propertyManaqement)
+    public function edit(PropertDetailsReport $propertDetailsReport)
     {
         //
-        return view('PropertyManaqement.edit');
+        return view('PropertDetailsReport.edit');
     }
 
-  
-    public function update(Request $request, PropertyManaqement $propertyManaqement)
+    
+    public function update(Request $request, PropertDetailsReport $propertDetailsReport)
     {
         //
         $vaildet = $request->validate([
             'buildingname' => 'required',
-            'property' => 'required',
+            'propeerty' => 'required',
             'type' => 'required',
             'model' => 'required',
             'category' => 'required',
@@ -77,18 +77,16 @@ class PropertyManaqementController extends Controller
             'tosize' => 'required',
             'status' => 'required',
             'view' => 'required',
-            'feature' => 'required',
+            'feature' => 'required'
         ]);
-        $propertyManaqement->update($vaildet);
-        return redirect()->route('PropertyManaqement.index');
-    
+        $propertDetailsReport->update($vaildet);
+        return redirect()->route('PropertDetailsReport.index');
     }
 
     
-    public function destroy(PropertyManaqement $propertyManaqement)
+    public function destroy(PropertDetailsReport $propertDetailsReport)
     {
-        //
-        $propertyManaqement->delete();
-        return redirect()->route('PropertyManaqement.index');
+        $propertDetailsReport->delete();
+        return redirect()->route('PropertDetailsReport.index');
     }
 }

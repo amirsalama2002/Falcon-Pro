@@ -62,29 +62,33 @@
                 <h5>Reports</h5>
                 <div class="hj">
                     <i class="fa-brands fa-apple"></i>
-                    <a href="/contacts">contacts</a>
+                    <a href="/ChequeListReport">Cheque List Report</a>
                 </div>
                 <div class="hj">
                     <i class="fa-solid fa-bell"></i>
-                    <a href="/contacts">Property Manaqement</a>
+                    <a href="/IssuedChequeReport">Issued Cheque Report</a>
                 </div>
                 <div class="hj">
                     <i class="fa-solid fa-mug-hot"></i>
-                    <a href="/contacts">Contracts</a>
+                    <a href="/PropertDetailsReport">Propert Details Report</a>
                 </div>
                 <div class="hj">
                     <i class="fa-solid fa-circle-exclamation"></i>
-                    <a href="/contacts">Print Cheque</a>
+                    <a href="/ContractListReport">Contract List Report</a>
                 </div>
                 <div class="hj">
                     <i class="fa-solid fa-hand"></i>
-                    <a href="/contacts">lssue Cheque From Bank</a>
+                    <a href="/ContractsEndDatesReport">Contracts End Dates Report</a>
+                </div>
+                <div class="hj">
+                    <i class="fa-solid fa-hand"></i>
+                    <a href="/CommisionDatesReport">Commision Dates Report</a>
                 </div>
             </div>
             <!-- reports -->
             <!-- setup -->
             <div class="he">
-                <h5>setup</h5>
+                <h5>Setup</h5>
                 <div class="hj">
                     <i class="fa-brands fa-apple"></i>
                     <a href="/contacts">contacts</a>
@@ -107,7 +111,76 @@
                 </div>
             </div>
             <!--setup -->
-            Be Falcon
+            <style>
+                .dropdown-item {
+                    color: white;
+                    font-size: 20px;
+                    background-color:darkgoldenrod;
+                    /* padding: 5px; */
+                    /* width: 50%; */
+                    text-align: center;
+                    margin: auto;
+                    border: none !important;
+                    border-radius: 5px;
+                }
+                
+                .navbar-nav {
+                    border-radius: 5px;
+                    color: white !important;
+                    font-size: 20px;
+                    background-color: #123456;
+                    /* padding: 5px; */
+                    /* width: 50%; */
+                    text-align: center;
+                    margin: auto;
+                    border: none !important;
+                }
+            </style>
+            <!-- log out -->
+
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+            <!-- log out -->
+
+            <ul class="navbar-nav ms-auto">
+                <!-- Authentication Links -->
+                @guest
+                @if (Route::has('login'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @endif
+
+                @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+                @endif
+                @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+                @endguest
+            </ul>
+
+
         </div>
         <div class="alye">
 
@@ -115,16 +188,17 @@
         </div>
     </div>
     <style>
-        .alye{
+        .alye {
             width: 100%;
         }
+
         .hed {
             display: flex;
         }
 
         .contact {
-            height: 92.4vh;
-            width: 20%;
+            height: 100vh;
+            width: 22%;
             background-color: teal;
             padding: 7px;
         }
